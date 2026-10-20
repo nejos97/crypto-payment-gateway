@@ -38,7 +38,7 @@ http = "1"
 k256 = { version = "0.13", features = ["ecdsa"] }
 pbkdf2 = "0.12"
 # tokio-rustls-comp: `rediss://` (TLS) is required outside development.
-redis = { version = "0.27", features = ["tokio-comp", "connection-manager", "tokio-rustls-comp"] }
+redis = { version = "1.6", features = ["tokio-comp", "connection-manager", "tokio-rustls-comp"] }
 reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
 rust_decimal = { version = "1", features = ["serde-with-str", "serde-float"] }
 rust_decimal_macros = "1"
