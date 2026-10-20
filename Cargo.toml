@@ -59,7 +59,7 @@ uuid = { version = "1", features = ["v4", "serde"] }
 zeroize = "1"
 bip39 = "2"
 ed25519-dalek = "2"
-solana-sdk = "2.1"
+solana-sdk = "5.0"
 spl-associated-token-account = { version = "6", features = ["no-entrypoint"] }
 spl-token = { version = "7", features = ["no-entrypoint"] }
 bech32 = "0.11"
