@@ -57,7 +57,7 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
 uuid = { version = "1", features = ["v4", "serde"] }
 zeroize = "1"
-bip39 = "2"
+bip39 = "3"
 ed25519-dalek = "2"
 solana-sdk = "2.1"
 spl-associated-token-account = { version = "6", features = ["no-entrypoint"] }
