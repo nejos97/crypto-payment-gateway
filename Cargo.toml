@@ -61,7 +61,7 @@ bip39 = "2"
 ed25519-dalek = "2"
 solana-sdk = "2.1"
 spl-associated-token-account = { version = "6", features = ["no-entrypoint"] }
-spl-token = { version = "7", features = ["no-entrypoint"] }
+spl-token = { version = "9", features = ["no-entrypoint"] }
 bech32 = "0.11"
 # Transaction building, sighashes and address parsing (already in the lock via the Breez SDK).
 bitcoin = "0.32"
