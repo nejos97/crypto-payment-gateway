@@ -35,7 +35,7 @@ dotenvy = "0.15"
 hex = "0.4"
 hmac = "0.12"
 http = "1"
-k256 = { version = "0.13", features = ["ecdsa"] }
+k256 = { version = "0.14", features = ["ecdsa"] }
 pbkdf2 = "0.12"
 # tokio-rustls-comp: `rediss://` (TLS) is required outside development.
 redis = { version = "0.27", features = ["tokio-comp", "connection-manager", "tokio-rustls-comp"] }
