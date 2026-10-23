@@ -29,7 +29,7 @@ rand = "0.8"
 subtle = "2"
 base58 = "0.2"
 bs58 = "0.5"
-base64 = "0.22"
+base64 = "0.23"
 chrono = { version = "0.4", features = ["serde"] }
 dotenvy = "0.15"
 hex = "0.4"
