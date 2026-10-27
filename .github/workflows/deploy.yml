@@ -117,7 +117,7 @@ jobs:
       contents: read
       packages: write # push the image to ghcr.io
     steps:
-      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -135,7 +135,7 @@ jobs:
             fi
           done
 
-      - uses: ruby/setup-ruby@e81a8fa391b11a595c1b7ed84177cc0fe02faf83 # v1.328.0
+      - uses: ruby/setup-ruby@824c0e29fdfc7d689c191c27acc969d2d04b7dd8 # v1.331.0
         with:
           ruby-version: '3.3'
       # Exact version: config/deploy.yml needs >= 2.12 (ssh.forward_agent).
@@ -144,7 +144,7 @@ jobs:
       # The deploy key goes into an agent (never onto disk); the action stops
       # it at the end of the job. The server's host key is accepted on first
       # contact (net-ssh's default), not pinned.
-      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+      - uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
