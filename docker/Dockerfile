@@ -15,7 +15,7 @@ ARG PNPM_VERSION=11.25.0
 # ── API: Rust release build ──────────────────────────────────────────────────
 # protoc + libprotobuf-dev: the Breez SDK (Lightning) compiles its gRPC protos
 # at build time and imports the google/protobuf/*.proto well-known types.
-FROM rust:1.99.0-bookworm@sha256:114c7a4425406451c2866b6aafe69fe29b1b298832db1277d411ac73c82d04d6 AS api-build
+FROM rust:1.99.1-bookworm@sha256:e6f2cff35d0f309acf8433b4f05878ed77092602c5065cc81801177da0bb3a9c AS api-build
 RUN apt-get update \
   && apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev \
   && rm -rf /var/lib/apt/lists/*
@@ -27,7 +27,7 @@ COPY packages/rust ./packages/rust
 RUN cargo build --release --locked -p gateway
 
 # ── Dashboard: pnpm + Nx build ───────────────────────────────────────────────
-FROM node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 AS dashboard-build
+FROM node:24.22.2-alpine3.24@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8 AS dashboard-build
 ARG PNPM_VERSION
 ENV NX_DAEMON=false CI=true
 RUN npm install -g pnpm@${PNPM_VERSION} && pnpm config set store-dir /pnpm/store
