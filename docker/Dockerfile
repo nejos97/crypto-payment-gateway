@@ -15,7 +15,7 @@ ARG PNPM_VERSION=11.25.0
 # ── API: Rust release build ──────────────────────────────────────────────────
 # protoc + libprotobuf-dev: the Breez SDK (Lightning) compiles its gRPC protos
 # at build time and imports the google/protobuf/*.proto well-known types.
-FROM rust:1.99.0-bookworm@sha256:114c7a4425406451c2866b6aafe69fe29b1b298832db1277d411ac73c82d04d6 AS api-build
+FROM rust:1.99.1-bookworm@sha256:e6f2cff35d0f309acf8433b4f05878ed77092602c5065cc81801177da0bb3a9c AS api-build
 RUN apt-get update \
   && apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev \
   && rm -rf /var/lib/apt/lists/*
@@ -27,7 +27,7 @@ COPY packages/rust ./packages/rust
 RUN cargo build --release --locked -p gateway
 
 # ── Dashboard: pnpm + Nx build ───────────────────────────────────────────────
-FROM node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 AS dashboard-build
+FROM node:24.22.3-alpine3.24@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5 AS dashboard-build
 ARG PNPM_VERSION
 ENV NX_DAEMON=false CI=true
 RUN npm install -g pnpm@${PNPM_VERSION} && pnpm config set store-dir /pnpm/store
@@ -64,7 +64,7 @@ CMD ["/app/gateway"]
 # ── Dashboard runtime (nginx) ────────────────────────────────────────────────
 # nginx stable line; its CA bundle (/etc/ssl/certs/ca-certificates.crt, from
 # ca-certificates-bundle) verifies the API's certificate when API_URL is https.
-FROM nginx:1.30.5-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94 AS dashboard
+FROM nginx:1.30.6-alpine@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a AS dashboard
 COPY docker/dashboard/nginx.conf docker/dashboard/nginx.conf.template docker/dashboard/security-headers.conf docker/dashboard/start.sh /app/dashboard/
 COPY --from=dashboard-build /workspace/apps/dashboard/dist /app/dashboard/html
 ENV PORT=8080 API_URL=http://api:3000
